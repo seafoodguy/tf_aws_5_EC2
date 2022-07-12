@@ -32,10 +32,13 @@ resource "aws_instance" "aws_sandbox" {
   provisioner "local-exec" {
     command = <<EOF
 aws --profile ${var.profile} ec2 wait instance-status-ok --region ${var.region-master} --instance-ids ${self.id}
-ansible-playbook --extra-vars 'passed_in_hosts=tag_Name_${self.tags.Name}' ansible_templates/jenkins-master-sample.yml
+ansible-playbook ansible_templates/jenkins-master-sample.yml
 EOF
   }
 }
+
+#ansible-playbook --extra-vars 'passed_in_hosts=tag_Name_${self.tags.Name}' ansible_templates/jenkins-master-sample.yml
+
 
 #Create SG for allowing TCP/8080 from * and TCP/22 from your IP in use-east-1
 resource "aws_security_group" "aws_sandbox_sg" {
