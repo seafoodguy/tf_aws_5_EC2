@@ -8,7 +8,7 @@ data "aws_ssm_parameter" "linuxAmi-useast1" {
 resource "aws_key_pair" "master-key" {
   provider   = aws.region-master
   key_name   = "aws_sandbox"
-  public_key = file("./ssh_key/id_rsa.pub")
+  public_key = file("../tf_sshkey/id_rsa.pub")
 }
 
 
