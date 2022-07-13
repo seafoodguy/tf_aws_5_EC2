@@ -10,12 +10,12 @@
 output "aws_sandbox-Public-IPs" {
   value = {
     for instance in aws_instance.aws_sandbox :
-    instance.name => instance.public_ip
+    instance.tags => instance.public_ip
   }
 }
 output "aws_sandbox-Private-IPs" {
   value = {
     for instance in aws_instance.aws_sandbox :
-    instance.name => instance.private_ip
+    instance.tags => instance.private_ip
   }
 }
